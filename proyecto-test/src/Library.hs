@@ -12,7 +12,7 @@ data Postre = Postre {
 } deriving Show
 
 bizcochoBorracho = Postre{ peso = 100, temperatura = 25, sabores = ["fruta", "crema"]}
-
+tartaDeMelaza = Postre{ peso = 50, temperatura = 0 , sabores = ["melaza"] }
 
 -- 2)
 
@@ -36,7 +36,7 @@ sinSabor :: Postre -> Postre
 sinSabor postre = Postre{
     peso = (peso postre),
     temperatura = (temperatura postre),
-    sabores = [" "]
+    sabores = []
 }
 
 agregarSabor :: String -> Postre -> Postre
@@ -69,3 +69,15 @@ riddikulus sabor postre = agregarSabor (reverse sabor) postre
 avadaKedavra :: Hechizo
 avadaKedavra postre = sinSabor (immobulus postre)
 
+
+-- 3)
+
+mesa = [bizcochoBorracho, tartaDeMelaza]
+
+listo :: Postre -> Bool
+listo postre = (peso postre > 0) && (temperatura postre > 0) && (length sabores postre > 0)
+
+listosTrasHechizo :: [Postre] -> Hechizo -> Bool
+listosTrasHechizo postres hechizo = all (\x -> listo hechizo x ) postres
+
+-- 4)
