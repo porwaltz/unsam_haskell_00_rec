@@ -81,9 +81,18 @@ listosTrasHechizo :: [Postre] -> Hechizo -> Bool
 listosTrasHechizo postres hechizo = all (\x -> listo hechizo x ) postres
 
 -- 4)
-extraerPeso p _ _ = p
+extraerPeso :: Postre -> Number
+extraerPeso postre  | (listo postre) = peso postre
+                    | otherwise      = 0
 
-pesoPromedio :: [Postre] -> Number
-pesoPromedio postres = (foldr (+) 0 (map (extraerPeso) postres)) / (length postres)
+pesoPromedioListos :: [Postre] -> Number
+pesoPromedioListos postres = (foldr (+) 0 (map (extraerPeso) postres)) / (length postres)
+
 
 -- 5)
+
+infinitosPostres :: [Postre]->[Postre]
+infinitosSectores postres = postres ++ (infinitosPostres postres)
+
+-- se puede consultar con Avada kedavra, con immobulus ya que la primer lectura dara false
+-- caso contrario no puede dar una respuesta porhe haskell no puede predecir si el proximo postre estara listo y consultara por siempre o hasta encontrar un false
