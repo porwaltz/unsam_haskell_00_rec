@@ -81,3 +81,9 @@ listosTrasHechizo :: [Postre] -> Hechizo -> Bool
 listosTrasHechizo postres hechizo = all (\x -> listo hechizo x ) postres
 
 -- 4)
+extraerPeso p _ _ = p
+
+pesoPromedio :: [Postre] -> Number
+pesoPromedio postres = (foldr (+) 0 (map (extraerPeso) postres)) / (length postres)
+
+-- 5)
